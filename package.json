@@ -1,11 +1,12 @@
 {
   "name": "bellagio-event-s",
   "version": "1.0.0",
-  "description": "Bellagio Events — site et administration",
+  "description": "Bellagio Events \u2014 site et administration",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "build:catalog": "node scripts/build-catalog.js"
   },
   "repository": {
     "type": "git",

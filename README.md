@@ -27,7 +27,7 @@ Aucun mot de passe n’est intégré au code. Les sessions durent huit heures, u
 
 - Accueil et pages dédiées : `/nos-espaces`, `/espaces/la-salle`, `/espaces/le-jardin`, `/a-propos`, `/formules`, `/galerie`, `/contact`.
 - Galerie filtrable, agrandissement, témoignages et animations progressives respectant les préférences de mouvement réduit.
-- Simulateur de devis : formules, capacité, date, options, tarifs semaine/week-end et remise saisonnière. Export du projet vers WhatsApp ou préremplissage du formulaire de contact. Les forfaits soirée restent des estimations de départ : les majorations par capacité/date non accessibles ne sont pas inventées. Les jours fériés et leurs veilles sont signalés manuellement par l’utilisateur, pas calculés automatiquement.
+- Simulateur de devis : formules, capacité, date, options, tarifs semaine/week-end et remise saisonnière. Export du projet vers WhatsApp ou préremplissage du formulaire de contact. Les majorations soirée par capacité et week-end sont initialisées à zéro et modifiables dans l’administration. Les jours fériés et leurs veilles sont signalés manuellement par l’utilisateur, pas calculés automatiquement.
 - Demande de visite avec validation côté client et serveur.
 - Administration : compteurs, recherche, filtres, changement de statut (nouvelle, contactée, confirmée, archivée), export CSV.
 - Modification du titre, de la présentation et des coordonnées depuis l’administration.
@@ -57,3 +57,29 @@ Le fichier `render.yaml` prépare un service web **gratuit**, sans disque payant
 **Limites de l’essai** : le service peut se mettre en veille et le système de fichiers est éphémère. Les demandes et modifications peuvent être perdues lors des redémarrages ou déploiements. Ne pas utiliser cet essai comme stockage de véritables réservations. Pour la production, prévoir un disque persistant ou une base de données, puis ajouter le domaine dans le tableau de bord de l’hébergeur.
 
 L’administration accepte aussi un jeton de session via l’en-tête Authorization, conservé uniquement dans le sessionStorage de l’onglet. Cela permet de fonctionner dans un aperçu intégré où les cookies tiers sont bloqués. Le mot de passe n’est pas conservé dans le navigateur.
+
+
+## Édition du site depuis `/admin`
+
+L’administration propose maintenant :
+
+- **Coordonnées** : titre d’accueil, présentation, téléphone/WhatsApp, adresse et e-mail public.
+- **Textes & pages** : catalogue des textes publics (titres, descriptions, navigation, prestations, témoignages et mentions), recherche et filtre par page. Les textes partagés sont modifiés partout, sans accepter de HTML. Les textes purement calculés et les messages techniques ne sont pas édités par ce catalogue.
+- **Photos & galerie** : remplacement des quatre visuels partagés par URL HTTPS ou import JPEG/PNG/WebP de 5 Mo maximum ; ajout, légende, catégorie, suppression et réorganisation des photos de galerie. Les quatre premières sont affichées sur l’accueil. Retirer une image de la galerie ne supprime pas le fichier importé.
+- **Prix & simulateur** : forfaits semaine/week-end, supplément soirée week-end, suppléments par palier d’invités, pourcentage et dates annuelles de remise, noms/descriptions/prix des options. La remise est appliquée au forfait et aux suppléments soirée, avant les options. Les prix de restauration restent calculés proportionnellement par tranche de 100 invités. Les capacités et règles de compatibilité des formules restent des règles du logiciel.
+- **Sauvegarde** : export/import JSON des réglages (hors demandes et fichiers photo). Les demandes s’exportent séparément en CSV. Conserver les originaux des photos et prévoir un disque persistant ; un export JSON ne suffit pas à récupérer un fichier effacé par Render.
+
+Les changements sont visibles au prochain chargement de la page publique. Les anciens fichiers de données sont complétés automatiquement avec les valeurs par défaut, sans effacer les demandes existantes. Les importations et sauvegardes nécessitent une session administrateur.
+
+Les fichiers photo sont conservés dans `DATA_DIR/uploads`, avec les réglages dans `DATA_DIR/store.json`. Sur l’offre gratuite Render, ces deux éléments restent éphémères. Pour la production, monter un volume persistant et régler `DATA_DIR` ou migrer vers un stockage externe.
+
+### Maintenance du catalogue
+
+Après une modification des textes par un développeur, régénérer le catalogue et versionner le fichier produit :
+
+```sh
+npm run build:catalog
+npm test
+```
+
+Le catalogue est généré depuis les pages du site avec jsdom (dépendance de développement uniquement). Les personnalisations utilisent un identifiant dérivé du texte source ; si le développeur remplace ce texte source, l’ancienne personnalisation ne correspond plus au nouveau texte.

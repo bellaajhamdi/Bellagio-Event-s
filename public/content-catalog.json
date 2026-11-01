@@ -1,0 +1,1712 @@
+{
+  "entries": [
+    {
+      "id": "t12b22a98",
+      "original": "BELLAGIO",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t6dc78753",
+      "original": "EVENT’S",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t64fa8f03",
+      "original": "Nos espaces",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "tfe523b22",
+      "original": "L’expérience",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t59c2fc92",
+      "original": "Nos formules",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t0909a4e2",
+      "original": "Galerie",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t49730f31",
+      "original": "Planifier une visite",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "ta10401a5",
+      "original": "ARIANA, TUNISIE · LIEU D’ÉMOTIONS",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t1bd05ebc",
+      "original": "Mariages · Fiançailles · Célébrations",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tddcfa070",
+      "original": "Découvrir nos espaces",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "te04203bd",
+      "original": "DE BEAUX INSTANTS. DES SOUVENIRS ÉTERNELS.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "tadbe575f",
+      "original": "DÉFILER POUR DÉCOUVRIR",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t20ed70ba",
+      "original": "01",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t2cf93884",
+      "original": "/ 02",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t0c74094e",
+      "original": "L’ART DE CÉLÉBRER",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t0da2993a",
+      "original": "Certains instants méritent",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "tdad39a07",
+      "original": "un lieu",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "t485013c7",
+      "original": "inoubliable.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t46712c7a",
+      "original": "DEUX UNIVERS, UNE MÊME ÉLÉGANCE",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t0274eb5d",
+      "original": "À chaque rêve,",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "t0cb9ca6c",
+      "original": "son écrin.",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t2ff0ae2d",
+      "original": "À l’intérieur, sous les lustres.",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t00c5b6e4",
+      "original": "À l’extérieur, sous les étoiles.",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tae2eaad4",
+      "original": "Trouvez le décor de votre histoire.",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tadf19736",
+      "original": "01 / L’ÉLÉGANCE INTÉRIEURE",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t1f327098",
+      "original": "La Volta",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "Galerie"
+      ],
+      "type": "h3"
+    },
+    {
+      "id": "t651db961",
+      "original": "Salle couverte",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t74fd86a7",
+      "original": "Jusqu’à 500 invités",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t32dd7e7b",
+      "original": "02 / LA MAGIE DU PLEIN AIR",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t891c06a6",
+      "original": "La Cabana",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "Galerie"
+      ],
+      "type": "h3"
+    },
+    {
+      "id": "ta970c49f",
+      "original": "Espace extérieur",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t9cfd8547",
+      "original": "Deux espaces d’exception. Mille façons de célébrer.",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "ta55c48b9",
+      "original": "VOTRE HISTOIRE COMMENCE ICI ↗",
+      "pages": [
+        "Accueil",
+        "Nos espaces"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "tb2d2f1f5",
+      "original": "Le beau est dans les détails.",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t59eb2159",
+      "original": "LA SIGNATURE BELLAGIO",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "tdaecd0e3",
+      "original": "Rien n’est laissé",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "td7c85996",
+      "original": "au hasard.",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "t0e2ef505",
+      "original": "Surtout l’émotion.",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t737e4902",
+      "original": "Des premiers regards aux derniers pas de danse, chaque détail est pensé pour sublimer votre célébration. Vous vivez l’instant. Nous prenons soin du reste.",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tdc683753",
+      "original": "Une lumière féerique",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t1fed6f27",
+      "original": "02",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t8317a94e",
+      "original": "Un service sur mesure",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t1eed6d94",
+      "original": "03",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t1e257cbf",
+      "original": "Un cadre d’exception",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t1ded6c01",
+      "original": "04",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t1b453395",
+      "original": "Une électricité garantie",
+      "pages": [
+        "Accueil",
+        "L’expérience"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t186d7af4",
+      "original": "PENSÉES POUR VOS ENVIES",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t873dbf4b",
+      "original": "Nos",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "Formules et simulateur"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "tcfa0b7b8",
+      "original": "formules.",
+      "pages": [
+        "Accueil",
+        "Formules et simulateur"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t7a697efa",
+      "original": "Soirée ou réception : une formule pour chaque célébration.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tf1d84700",
+      "original": "SOUS LES ÉTOILES",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t661d5aa7",
+      "original": "Les soirées",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "h3"
+    },
+    {
+      "id": "t9b1e336a",
+      "original": "Une soirée qui vous ressemble, de la première émotion à la dernière danse.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t0e702791",
+      "original": "21h — 01h",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t1e6dc0e2",
+      "original": "À partir de",
+      "pages": [
+        "Accueil",
+        "Formules et simulateur"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t3b4e4f49",
+      "original": "TND",
+      "pages": [
+        "Accueil",
+        "Formules et simulateur"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "tb98b4813",
+      "original": "Simuler ma soirée",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t1edde29e",
+      "original": "À L’HEURE DORÉE",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "tea3b7f47",
+      "original": "Les réceptions",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "h3"
+    },
+    {
+      "id": "ta347ed8c",
+      "original": "Le charme d’un après-midi de fête, baigné de lumière et de douceur.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t60c0ec0e",
+      "original": "17h — 19h ou 18h — 20h",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "te0cda3a7",
+      "original": "Jusqu’à 250 invités",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t4c3392c3",
+      "original": "Classique",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "ta86d0582",
+      "original": "Golden Hour",
+      "pages": [
+        "Accueil",
+        "Formules et simulateur"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t66c64fd5",
+      "original": "Simuler ma réception",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "tbdcc0945",
+      "original": "VOTRE PROJET PREND FORME",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "te67d3b27",
+      "original": "Un rêve.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "tbe9d0cdb",
+      "original": "Et si on le chiffrait ?",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "tc3ddc7a3",
+      "original": "Composez votre événement et découvrez votre budget en quelques clics.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tdd852bb6",
+      "original": "Ouvrir le simulateur de devis",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t89c2a44f",
+      "original": "DES LIEUX QUI RACONTENT",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t18a1c0cc",
+      "original": "Un avant-goût",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "t46e7c457",
+      "original": "de magie.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t54fa84b9",
+      "original": "LE DÉCOR DE VOS PLUS BEAUX SOUVENIRS",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "tcb665d4d",
+      "original": "LA VOLTA ↗",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "te54171ea",
+      "original": "BELLAGIO, À LA NUIT TOMBÉE ↗",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "tf5b0c64c",
+      "original": "LES MOTS QUI NOUS TOUCHENT",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t20e651ed",
+      "original": "La Volta a dépassé tous nos rêves. La kosha, les guirlandes lumineuses, les papillons : nos 450 invités en parlent encore. Une soirée féerique.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "blockquote"
+    },
+    {
+      "id": "tf3677186",
+      "original": "YASMINE & KARIM · MARIAGE",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t0ef11c00",
+      "original": "Témoignages présentés sur le site Bellagio Event’s",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "small"
+    },
+    {
+      "id": "tc87b26bf",
+      "original": "FAISONS CONNAISSANCE",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t2fb75d46",
+      "original": "Les belles histoires",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "tb54aa147",
+      "original": "commencent par",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "t14803eb5",
+      "original": "une rencontre.",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "tef2d5998",
+      "original": "Parlez-nous de votre événement. Notre équipe vous accompagne pour imaginer une célébration à votre image.",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t9fcb0b8b",
+      "original": "Échangeons sur WhatsApp ↗",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t67966da0",
+      "original": "Planifions votre visite",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "h3"
+    },
+    {
+      "id": "t0d47aca0",
+      "original": "Un premier pas vers votre grand jour.",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t6237c229",
+      "original": "Votre nom complet",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "t5a7efbf7",
+      "original": "Téléphone",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "t10793228",
+      "original": "Date souhaitée",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "t93845580",
+      "original": "Votre événement",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "t4e1e1a7e",
+      "original": "Votre espace",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "tfe3e97af",
+      "original": "Nombre d’invités",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "t7514006c",
+      "original": "Un souhait particulier ?",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "t6948c9f3",
+      "original": "(facultatif)",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t5d959f4f",
+      "original": "Demander une visite",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "button"
+    },
+    {
+      "id": "tc508cb2f",
+      "original": "Vos informations sont utilisées uniquement pour répondre à votre demande.",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "small"
+    },
+    {
+      "id": "t87e94a80",
+      "original": "Des instants, pour toujours.",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t9ae2ed14",
+      "original": "ÉCRIVONS VOTRE HISTOIRE ↗",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t551189f7",
+      "original": "Bellagio Event’s. Tous droits réservés.",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t29f125f5",
+      "original": "ARIANA · TUNISIE",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t53ec47bf",
+      "original": "Espace administrateur ↗",
+      "pages": [
+        "Accueil",
+        "Nos espaces",
+        "La Volta",
+        "La Cabana",
+        "L’expérience",
+        "Formules et simulateur",
+        "Galerie",
+        "Contact"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t7d2c6a1c",
+      "original": "Une élégance rare, un service aux petits soins. L’éclairage doré et les voilages ont transformé notre soirée de fiançailles en véritable conte.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "blockquote"
+    },
+    {
+      "id": "tf60a51c0",
+      "original": "LEÏLA & SAMI · FIANÇAILLES",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t3ccbb66c",
+      "original": "Se marier à La Cabana, sous un ciel de guirlandes à l’heure dorée, restera le plus beau souvenir de notre vie. Magique du début à la fin.",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "blockquote"
+    },
+    {
+      "id": "tb9faaa30",
+      "original": "NOUR & ADAM · MARIAGE EN PLEIN AIR",
+      "pages": [
+        "Accueil"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t757fa82c",
+      "original": "DEUX LIEUX D’EXCEPTION",
+      "pages": [
+        "Nos espaces"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t47cd39a3",
+      "original": "espaces.",
+      "pages": [
+        "Nos espaces"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t2a2c660b",
+      "original": "Deux écrins d’exception, une même promesse d’élégance.",
+      "pages": [
+        "Nos espaces"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tea99e4a3",
+      "original": "NOS ESPACES",
+      "pages": [
+        "La Volta",
+        "La Cabana"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t47e217fe",
+      "original": "La",
+      "pages": [
+        "La Volta",
+        "La Cabana"
+      ],
+      "type": "h1"
+    },
+    {
+      "id": "td330b9cd",
+      "original": "Volta.",
+      "pages": [
+        "La Volta"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t2f0b6305",
+      "original": "Une salle de lumière, pensée pour les grands jours.",
+      "pages": [
+        "La Volta"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t47bd0f67",
+      "original": "JUSQU’À 500 INVITÉS",
+      "pages": [
+        "La Volta",
+        "La Cabana"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t252ca985",
+      "original": "Une élégance",
+      "pages": [
+        "La Volta"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "tb7787062",
+      "original": "lumineuse.",
+      "pages": [
+        "La Volta"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "tf93def12",
+      "original": "Sols nacrés, voilages immaculés et milliers de guirlandes lumineuses composent un décor de rêve où chaque mariage devient une scène inoubliable.",
+      "pages": [
+        "La Volta"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t48a0f55e",
+      "original": "Simuler mon événement ↗",
+      "pages": [
+        "La Volta",
+        "La Cabana"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "td4f5355d",
+      "original": "Cabana.",
+      "pages": [
+        "La Cabana"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t01e61fe0",
+      "original": "Un jardin sous les étoiles, pour une célébration en plein air.",
+      "pages": [
+        "La Cabana"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t6307ecb2",
+      "original": "La magie du",
+      "pages": [
+        "La Cabana"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "t8c85287f",
+      "original": "plein air.",
+      "pages": [
+        "La Cabana"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "td4471449",
+      "original": "Une réception à l’heure dorée ou une soirée sous les guirlandes : La Cabana accueille vos plus beaux moments dans un cadre ouvert et lumineux.",
+      "pages": [
+        "La Cabana"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t68524a9b",
+      "original": "L’EXPÉRIENCE BELLAGIO",
+      "pages": [
+        "L’expérience"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t9277f65a",
+      "original": "Le souci du",
+      "pages": [
+        "L’expérience"
+      ],
+      "type": "h1"
+    },
+    {
+      "id": "tbd9f4466",
+      "original": "moindre détail.",
+      "pages": [
+        "L’expérience"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "tfcebbb33",
+      "original": "De l’accueil nacré à la kosha illuminée, chaque espace est scénographié pour sublimer votre histoire.",
+      "pages": [
+        "L’expérience"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t86b31ac8",
+      "original": "BELLAGIO EVENT’S",
+      "pages": [
+        "Formules et simulateur",
+        "Galerie"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "te8b8e47b",
+      "original": "Soirée ou réception — nos tarifs 2026–2027 pour La Cabana et La Volta.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t576b0fb8",
+      "original": "★ SIGNATURE · 21H – 01H",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "tca32d500",
+      "original": "Pack",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "t18e30372",
+      "original": "Soirée",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t65880958",
+      "original": "La Cabana & La Volta · Jusqu’à 500 invités",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t71cce09d",
+      "original": "Base indicative ; ajustements selon date et capacité à confirmer.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "td9be613a",
+      "original": "Ouvrir le simulateur",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t0e666cad",
+      "original": "Prestations incluses",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "h3"
+    },
+    {
+      "id": "t72e6db9f",
+      "original": "Décoration de la salle au choix : lumière, tables et podium",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "li"
+    },
+    {
+      "id": "t100e3080",
+      "original": "Eau minérale en carafes à volonté, thé à la menthe, jus de fruits frais",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "li"
+    },
+    {
+      "id": "t6bb990fc",
+      "original": "Maître d’hôtel et serveurs professionnels",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "li"
+    },
+    {
+      "id": "t6dca5af8",
+      "original": "Parking privé sécurisé",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "li"
+    },
+    {
+      "id": "t73479bc2",
+      "original": "Groupe électrogène de secours",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "li"
+    },
+    {
+      "id": "t237eed95",
+      "original": "Également inclus : dressing pour les manteaux et deux cuisines équipées avec chambre froide, deux cuisinières et four.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tae1cf684",
+      "original": "RÉCEPTION · 17h – 19h",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t0016ab68",
+      "original": "Standard",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "h3"
+    },
+    {
+      "id": "t9792af94",
+      "original": "La Cabana & La Volta · Jusqu’à 250 invités",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t9d2306e5",
+      "original": "Lundi – Jeudi",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "ta33361f3",
+      "original": "Vendredi – Dimanche & jours fériés",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t33ab3743",
+      "original": "4 serveurs + 1 maître d’hôtel",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t3b1ab37b",
+      "original": "Composer ma réception ↗",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t48abc03b",
+      "original": "RÉCEPTION · 18h – 20h",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "tb2bfe8df",
+      "original": "La Cabana · Jusqu’à 250 invités",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tdfe70424",
+      "original": "SIMULATEUR DE DEVIS",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "tf44fa0fc",
+      "original": "Imaginez votre soirée.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "h2"
+    },
+    {
+      "id": "tcc8c125e",
+      "original": "Composez votre budget.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "tf055a8ff",
+      "original": "Votre formule, votre date, vos envies.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tf38e3a4f",
+      "original": "Une estimation qui évolue avec vous.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "ta63891b1",
+      "original": "Formule",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "t38c0b7f4",
+      "original": "Salle",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "t65add0a2",
+      "original": "Date de l’événement",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "tf8580e23",
+      "original": "Jour férié ou veille de jour férié",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "label"
+    },
+    {
+      "id": "tc5534c60",
+      "original": "Cochez cette case si votre date correspond à un jour férié ou à sa veille.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tc88a9ca9",
+      "original": "Les petits détails qui changent tout.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "h3"
+    },
+    {
+      "id": "t44897e47",
+      "original": "Options en extra · choisissez vos prestations",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t21c0dac2",
+      "original": "VOTRE CÉLÉBRATION, EN UN REGARD",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "t1a8c0de6",
+      "original": "Votre estimation",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "h3"
+    },
+    {
+      "id": "t6f87be52",
+      "original": "Total estimé",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t8be62e23",
+      "original": "Estimation indicative, sans réservation de date. Les jours fériés et leurs veilles sont au tarif week-end. Tarif final confirmé sur devis.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t95be8a73",
+      "original": "50 % à la réservation, 50 % 20 jours avant l’événement.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "t6d2189c9",
+      "original": "Recevoir mon devis",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "tc15402d4",
+      "original": "Envoyer sur WhatsApp ↗",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "a"
+    },
+    {
+      "id": "t14e8c4ba",
+      "original": "photos.",
+      "pages": [
+        "Galerie"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t3e37a2f7",
+      "original": "Découvrez nos espaces en images.",
+      "pages": [
+        "Galerie"
+      ],
+      "type": "p"
+    },
+    {
+      "id": "tbdb045f5",
+      "original": "Tout",
+      "pages": [
+        "Galerie"
+      ],
+      "type": "button"
+    },
+    {
+      "id": "tce4354d7",
+      "original": "La scène dorée de La Volta ↗",
+      "pages": [
+        "Galerie"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t6d949ce6",
+      "original": "La Cabana à la tombée de la nuit ↗",
+      "pages": [
+        "Galerie"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t77c2e6f7",
+      "original": "La salle La Volta ↗",
+      "pages": [
+        "Galerie"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t968edd81",
+      "original": "La façade de Bellagio ↗",
+      "pages": [
+        "Galerie"
+      ],
+      "type": "span"
+    },
+    {
+      "id": "t465213cd",
+      "original": "VOTRE CÉLÉBRATION COMMENCE ICI",
+      "pages": [
+        "Contact"
+      ],
+      "type": "div"
+    },
+    {
+      "id": "tcc7dab7d",
+      "original": "Rencontrons-",
+      "pages": [
+        "Contact"
+      ],
+      "type": "h1"
+    },
+    {
+      "id": "t93362b4c",
+      "original": "nous.",
+      "pages": [
+        "Contact"
+      ],
+      "type": "em"
+    },
+    {
+      "id": "t351b70d1",
+      "original": "Contactez-nous pour une visite guidée et un devis personnalisé.",
+      "pages": [
+        "Contact"
+      ],
+      "type": "p"
+    }
+  ]
+}

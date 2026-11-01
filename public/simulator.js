@@ -1,6 +1,6 @@
 (()=>{
 const form=document.getElementById('sim-form');
-const money=n=>new Intl.NumberFormat('fr-TN',{maximumFractionDigits:0}).format(n);
+const money=n=>new Intl.NumberFormat('fr-TN',{maximumFractionDigits:2}).format(n);
 if(form){
 const P=window.BellagioPricing,fields=form.elements,container=document.getElementById('sim-options');let selection=new Set();
 fields.date.min=new Date().toISOString().slice(0,10);
@@ -12,12 +12,12 @@ const available=P.options.filter(o=>(!o.evening||evening)&&(!o.reception||!eveni
 container.replaceChildren();available.forEach(o=>{const label=document.createElement('label');label.className='sim-option';const input=document.createElement('input');input.type='checkbox';input.value=o.id;input.checked=selection.has(o.id);input.addEventListener('change',()=>{if(input.checked){if(o.group)P.options.filter(other=>other.group===o.group).forEach(other=>selection.delete(other.id));selection.add(o.id)}else selection.delete(o.id);update()});const copy=document.createElement('span'),title=document.createElement('strong');title.textContent=o.label;copy.append(title);if(o.detail){const small=document.createElement('small');small.textContent=o.detail;copy.append(small)}const price=document.createElement('b');price.textContent='+'+money(o.price*(o.per100?Number(fields.guests.value)/100:1))+' DT';label.append(input,copy,price);container.append(label)});
 const result=P.calculate({pack,guests:Number(fields.guests.value),date:fields.date.value,holiday:fields.holiday.checked,selected:[...selection]});
 const breakdown=document.getElementById('sim-breakdown');breakdown.replaceChildren();function line(label,value,cls){const div=document.createElement('div');div.className='estimate-line '+(cls||'');const name=document.createElement('span'),amount=document.createElement('b');name.textContent=label;amount.textContent=value;div.append(name,amount);breakdown.append(div)}
-line(evening?'Forfait de départ':'Forfait',money(result.base)+' DT');if(result.discount)line('Remise saisonnière −20 %','−'+money(result.discount)+' DT','discount');result.lines.forEach(o=>line(o.label,money(o.amount)+' DT'));
+line(evening?'Forfait de départ':'Forfait',money(result.base)+' DT');if(result.discount)line('Remise saisonnière −'+P.settings.discountPercent+' %','−'+money(result.discount)+' DT','discount');result.lines.forEach(o=>line(o.label,money(o.amount)+' DT'));
 document.getElementById('sim-total').textContent=money(result.total);
 const description=P.labels[pack]+' · '+fields.space.value+' · '+fields.guests.value+' invités'+(fields.date.value?' · '+new Date(fields.date.value+'T12:00:00').toLocaleDateString('fr-FR'):'');document.getElementById('sim-description').textContent=description;
-document.getElementById('sim-warning').textContent=evening?'Estimation à partir de 5 500 DT : les majorations éventuelles selon la date et le nombre d’invités ne sont pas publiées dans les informations accessibles. Elles seront confirmées par l’équipe.':(fields.date.value?(result.weekend?'Tarif week-end / jour férié appliqué.':'Tarif semaine (lundi–jeudi) appliqué.'):'Choisissez une date pour déterminer le tarif semaine ou week-end.');
+document.getElementById('sim-warning').textContent=evening?'Estimation selon les tarifs configurés, la date et le nombre d’invités. Le prix final sera confirmé sur devis.':(fields.date.value?(result.weekend?'Tarif week-end / jour férié appliqué.':'Tarif semaine (lundi–jeudi) appliqué.'):'Choisissez une date pour déterminer le tarif semaine ou week-end.');
 let message='Bonjour Bellagio Event’s, je souhaite un devis pour : '+description+'.\n'+result.lines.map(o=>o.label+' : '+money(o.amount)+' DT').join('\n')+'\nEstimation indicative : '+money(result.total)+' TND'+(result.discount?' (remise saisonnière incluse)':'')+'. Tarif à confirmer.';
-document.getElementById('sim-whatsapp').href='https://wa.me/21652359900?text='+encodeURIComponent(message);
+document.getElementById('sim-whatsapp').href='https://wa.me/'+(window.BELLAGIO_CONTENT?.phone||'21652359900').replace(/\D/g,'')+'?text='+encodeURIComponent(message);
 document.getElementById('sim-contact').onclick=()=>{try{sessionStorage.setItem('bellagio-estimate',JSON.stringify({message,date:fields.date.value,guests:fields.guests.value,space:fields.space.value,event:evening?'Mariage':'Réception'}))}catch{}};
 }
 form.addEventListener('change',e=>{if(e.target.closest('#sim-options'))return;update()});form.onsubmit=e=>e.preventDefault();
