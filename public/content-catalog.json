@@ -1533,6 +1533,22 @@
       "type": "label"
     },
     {
+      "id": "tae532ea4",
+      "original": "Total estimé :",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "strong"
+    },
+    {
+      "id": "tf1c2b1ed",
+      "original": "Le total comprend la remise éventuelle et les options sélectionnées.",
+      "pages": [
+        "Formules et simulateur"
+      ],
+      "type": "small"
+    },
+    {
       "id": "tf8580e23",
       "original": "Jour férié ou veille de jour férié",
       "pages": [

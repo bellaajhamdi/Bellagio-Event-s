@@ -33,7 +33,8 @@ const ext=b.length>12&&b.subarray(0,3).equals(Buffer.from([255,216,255]))?'jpg':
 if(!ext)return res.status(400).json({error:'Format d’image non reconnu. SVG et fichiers non image interdits.'});const name=crypto.randomUUID()+'.'+ext;fs.writeFileSync(path.join(uploads,name),b);res.status(201).json({url:'/uploads/'+name});
 });
 app.use('/uploads',express.static(uploads,{dotfiles:'deny',maxAge:'7d'}));
-function publicPage(req,res){const {requests,...content}=read();let html=fs.readFileSync(path.join(__dirname,'public','index.html'),'utf8');const config=JSON.stringify(content).replace(/</g,'\\u003c');html=html.replace('<!-- CMS_BOOTSTRAP -->','<script>window.BELLAGIO_CONTENT='+config+';</script>');res.set('Cache-Control','no-store');res.type('html').send(html)}
+const assetVersion=crypto.createHash('sha256').update(['pricing.js','simulator.js','pages.js','cms-public.js','style.css'].map(name=>fs.readFileSync(path.join(__dirname,'public',name))).join('')).digest('hex').slice(0,12);
+function publicPage(req,res){const {requests,...content}=read();let html=fs.readFileSync(path.join(__dirname,'public','index.html'),'utf8');const config=JSON.stringify(content).replace(/</g,'\\u003c');html=html.replace('<!-- CMS_BOOTSTRAP -->','<script>window.BELLAGIO_CONTENT='+config+';</script>');html=html.replace(/(src|href)="(\/[a-z-]+\.(?:js|css))"/g,(_,attr,url)=>attr+'="'+url+'?v='+assetVersion+'"');res.set('Cache-Control','no-store');res.type('html').send(html)}
 app.get(['/', '/formules','/nos-espaces','/galerie','/a-propos','/contact','/espaces/la-salle','/espaces/le-jardin'],publicPage);
 app.use(express.static(path.join(__dirname,'public')));
 
