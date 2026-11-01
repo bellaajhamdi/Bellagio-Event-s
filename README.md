@@ -27,7 +27,7 @@ Aucun mot de passe n’est intégré au code. Les sessions durent huit heures, u
 
 - Accueil et pages dédiées : `/nos-espaces`, `/espaces/la-salle`, `/espaces/le-jardin`, `/a-propos`, `/formules`, `/galerie`, `/contact`.
 - Galerie filtrable, agrandissement, témoignages et animations progressives respectant les préférences de mouvement réduit.
-- Simulateur de devis : formules, capacité, date, options, tarifs semaine/week-end et remise saisonnière. Export du projet vers WhatsApp ou préremplissage du formulaire de contact. Les majorations soirée par capacité et week-end sont initialisées à zéro et modifiables dans l’administration. Les jours fériés et leurs veilles sont signalés manuellement par l’utilisateur, pas calculés automatiquement.
+- Simulateur de devis : formules, capacité, date, options, tarifs semaine/week-end et remise saisonnière. Export du projet vers WhatsApp ou préremplissage du formulaire de contact. Les majorations soirée sont de 200 TND par tranche de 50 invités au-delà des 250 invités de base (jusqu’à +1 000 TND pour 500 invités). Le supplément week-end est initialisé à zéro. Ces montants restent modifiables dans l’administration. Les jours fériés et leurs veilles sont signalés manuellement par l’utilisateur, pas calculés automatiquement.
 - Demande de visite avec validation côté client et serveur.
 - Administration : compteurs, recherche, filtres, changement de statut (nouvelle, contactée, confirmée, archivée), export CSV.
 - Modification du titre, de la présentation et des coordonnées depuis l’administration.
@@ -83,3 +83,10 @@ npm test
 ```
 
 Le catalogue est généré depuis les pages du site avec jsdom (dépendance de développement uniquement). Les personnalisations utilisent un identifiant dérivé du texte source ; si le développeur remplace ce texte source, l’ancienne personnalisation ne correspond plus au nouveau texte.
+
+
+### Barème capacité soirée
+
+250 invités : +0 DT ; 300 : +200 DT ; 350 : +400 DT ; 400 : +600 DT ; 450 : +800 DT ; 500 : +1 000 DT. Le supplément s’applique avant la remise saisonnière, comme les autres composantes du forfait. Les réceptions restent limitées à 250 invités.
+
+À la première lecture des anciens réglages sans `capacityStepVersion: 1`, le serveur remplace uniquement le barème de capacité par ces valeurs et conserve les autres réglages. Après cette migration, les modifications du barème depuis l’administration sont conservées.

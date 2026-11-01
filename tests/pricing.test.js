@@ -14,3 +14,9 @@ assert.equal(calculate({date:'2027-09-14'}).total,5500);
 assert.equal(calculate({guests:250,selected:['sweet','variety','savory']}).total,8000);
 assert.equal(calculate({pack:'standard',selected:['dinner','cake','music']}).total,3000);
 });
+test('supplément soirée de 200 DT pour chaque palier de 50 invités après 250',()=>{
+for(const [guests,extra]of [[250,0],[300,200],[350,400],[400,600],[450,800],[500,1000]]){
+assert.equal(calculate({guests,date:'2027-06-07'}).total,5500+extra);
+assert.equal(calculate({guests,date:'2027-01-04'}).total,(5500+extra)*.8);
+}
+});

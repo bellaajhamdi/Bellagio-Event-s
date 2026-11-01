@@ -11,7 +11,7 @@ const dataDir=process.env.DATA_DIR||path.join(__dirname,'data');
 const file=path.join(dataDir,'store.json');
 fs.mkdirSync(path.dirname(file),{recursive:true});
 const defaults={title:"Là où l’amour s’illumine.",intro:"Une salle de lumière, un jardin sous les étoiles. À Bellagio Event’s, nous donnons vie à vos plus beaux instants.",phone:'+216 52 359 900',address:'Ariana, Grand Tunis, Tunisie',email:'',requests:[]};
-function read(){const stored=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):{};return {...structuredClone(defaults),...structuredClone(cms.defaults),...stored}}
+function read(){const stored=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):{};const content={...structuredClone(defaults),...structuredClone(cms.defaults),...stored};if(stored.pricing&&stored.pricing.capacityStepVersion!==1){content.pricing={...structuredClone(cms.defaults.pricing),...stored.pricing,capacityStepVersion:1,capacityExtras:structuredClone(cms.defaults.pricing.capacityExtras)}}return content}
 function save(data){fs.writeFileSync(file+'.tmp',JSON.stringify(data,null,2));fs.renameSync(file+'.tmp',file)}
 const secretPath=path.join(dataDir,'admin-password');
 if(!process.env.ADMIN_PASSWORD&&!fs.existsSync(secretPath))fs.writeFileSync(secretPath,crypto.randomBytes(12).toString('base64url'),{mode:0o600});
