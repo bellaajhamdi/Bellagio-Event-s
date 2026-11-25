@@ -1,4 +1,5 @@
-import { DEFAULT_THEME, validTheme } from '../src/theme.js';
+import { DEFAULT_THEME, completeTheme, validTheme } from '../src/theme.js';
+import { validateRepair } from '../src/repair-data.js';
 
 const json = (data, status = 200, headers = {}) => new Response(JSON.stringify(data), {status, headers: {'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', ...headers}});
 const bad = (message, status = 400) => json({error: message}, status);
@@ -67,7 +68,11 @@ async function handle(req, env) {
   if (req.method === 'GET' && path === '/api/theme') {
     const row=await env.DB.prepare("SELECT value FROM site_settings WHERE key='theme'").first();
     if (!row) return json(DEFAULT_THEME);
-    try {const theme=JSON.parse(row.value);return json(validTheme(theme) ? theme : DEFAULT_THEME);} catch {return json(DEFAULT_THEME);}
+    try {const theme=JSON.parse(row.value);return json(validTheme(theme) ? completeTheme(theme) : DEFAULT_THEME);} catch {return json(DEFAULT_THEME);}
+  }
+  if (req.method === 'GET' && path === '/api/services') {
+    const rows=await env.DB.prepare('SELECT data FROM repair_services ORDER BY position, id').all();
+    return json(rows.results.map(row=>JSON.parse(row.data)).filter(service=>service.visible));
   }
   if (req.method === 'GET' && path === '/api/products') {
     const rows=await env.DB.prepare('SELECT data FROM products ORDER BY position, id').all();
@@ -101,10 +106,33 @@ async function handle(req, env) {
   if (req.method === 'POST' && path === '/api/logout') return json({ok:true},200,{'Set-Cookie':cookie(req,'',0)});
   if (!(await authenticated(req,env))) return bad('Connectez-vous pour continuer.',401);
 
+  if (req.method === 'GET' && path === '/api/admin/services') {
+    const rows=await env.DB.prepare('SELECT data FROM repair_services ORDER BY position, id').all();
+    return json(rows.results.map(row=>JSON.parse(row.data)));
+  }
+  if (req.method === 'POST' && path === '/api/services') {
+    let body; try { body=await req.json(); } catch { return bad('Données invalides.'); }
+    const id=crypto.randomUUID(), service=validateRepair(body,id);
+    if (!service) return bad('Vérifiez le nom, le tarif, les détails et l’icône du service.');
+    await env.DB.prepare('INSERT INTO repair_services (id,data,position) VALUES (?,?,(SELECT COALESCE(MAX(position),-1)+1 FROM repair_services))').bind(id,JSON.stringify(service)).run();
+    return json(service,201);
+  }
+  const serviceMatch=path.match(/^\/api\/services\/([a-zA-Z0-9-]+)$/);
+  if (serviceMatch && ['PUT','DELETE'].includes(req.method)) {
+    const existing=await env.DB.prepare('SELECT data FROM repair_services WHERE id=?').bind(serviceMatch[1]).first();
+    if (!existing) return bad('Service introuvable.',404);
+    if (req.method === 'DELETE') {await env.DB.prepare('DELETE FROM repair_services WHERE id=?').bind(serviceMatch[1]).run();return json({ok:true});}
+    let body; try {body=await req.json();} catch {return bad('Données invalides.');}
+    const service=validateRepair(body,serviceMatch[1]);
+    if (!service) return bad('Vérifiez le nom, le tarif, les détails et l’icône du service.');
+    await env.DB.prepare('UPDATE repair_services SET data=? WHERE id=?').bind(JSON.stringify(service),service.id).run();
+    return json(service);
+  }
   if (req.method === 'PUT' && path === '/api/theme') {
     let theme; try {theme=await req.json()} catch {return bad('Données invalides.')};
     if (!validTheme(theme)) return bad('Choisissez une couleur suffisamment claire et des options valides.');
-    const saved={palette:theme.palette,accent:theme.accent.toLowerCase(),radius:theme.radius,font:theme.font,density:theme.density};
+    const full=completeTheme(theme);
+    const saved={palette:full.palette,accent:full.accent.toLowerCase(),radius:full.radius,font:full.font,density:full.density,cards:full.cards,buttons:full.buttons,width:full.width,effects:full.effects};
     await env.DB.prepare("INSERT INTO site_settings (key,value) VALUES ('theme',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value").bind(JSON.stringify(saved)).run();
     return json(saved);
   }

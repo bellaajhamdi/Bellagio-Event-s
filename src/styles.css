@@ -161,7 +161,7 @@ h4 {
 /* ---------- Layout ---------- */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--container-width, 1200px);
   margin-inline: auto;
   padding-inline: clamp(18px, 3.2vw, 30px);
 }
@@ -3173,3 +3173,18 @@ html[data-theme-density="compact"] .section { padding-block: clamp(2.8rem, 4.5vw
 html[data-theme-density="compact"] .section--tight { padding-block: clamp(1.8rem, 3vw, 3rem); }
 html[data-theme-radius="soft"] .btn { border-radius: 10px; }
 html[data-theme-radius="square"] .btn { border-radius: 4px; }
+
+/* Additional visual controls; default choices preserve the original design. */
+html[data-theme-cards="outlined"] :is(.product-card,.service-card,.repa-card,.contact-card) { background: transparent; border-color: color-mix(in srgb, var(--cyan) 42%, transparent); }
+html[data-theme-cards="filled"] :is(.product-card,.service-card,.repa-card,.contact-card) { background: var(--surface-3); border-color: transparent; }
+html[data-theme-buttons="solid"] .btn-primary { background: var(--cyan); box-shadow: none; }
+html[data-theme-buttons="outline"] .btn-primary { background: transparent; color: var(--cyan-soft); border-color: var(--cyan); box-shadow: none; }
+html[data-theme-buttons="outline"] .cta-panel .btn-primary { color: #04121a; border-color: #04121a; }
+html[data-theme-effects="minimal"] body::before { display:none; }
+html[data-theme-effects="minimal"] .btn-primary { box-shadow:none; }
+html[data-theme-effects="minimal"] .service-card::before { display:none; }
+
+.repair-request { display:inline-flex; align-items:center; gap:6px; color:var(--cyan-soft); font-weight:600; font-size:.78rem; text-decoration:none; padding-top:14px; }
+.repair-request:hover { text-decoration:underline; }
+.repair-notice,.repair-empty { color:var(--muted); font-size:.9rem; margin-bottom:1.5rem; }
+.repair-empty { grid-column:1/-1; }

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import worker from '../worker/index.js';
+import { completeTheme } from '../src/theme.js';
 
 // Minimal D1 model for auth and theme routes; PBKDF2 is checked against Workers' production cap.
 function fakeDb() {
@@ -39,7 +40,7 @@ test('theme permissions and password rotation invalidate old sessions',async () 
     const cookie=r.headers.get('set-cookie').split(';')[0];
     const theme={palette:'graphite',accent:'#fbbf24',radius:'square',font:'classic',density:'compact'};
     r=await worker.fetch(request('/api/theme','PUT',theme,cookie),env);assert.equal(r.status,200);
-    r=await worker.fetch(request('/api/theme'),env);assert.deepEqual(await json(r),theme);
+    r=await worker.fetch(request('/api/theme'),env);assert.deepEqual(await json(r),completeTheme(theme));
     r=await worker.fetch(request('/api/password','POST',{currentPassword:'wrong',newPassword:'new-password-long-enough'},cookie),env);assert.equal(r.status,401);
     r=await worker.fetch(request('/api/password','POST',{currentPassword:env.ADMIN_PASSWORD,newPassword:'new-password-long-enough'},cookie),env);assert.equal(r.status,200);
     assert.equal(db.credential.iterations,100000);

@@ -15,6 +15,7 @@ import { initProductGrids, initProductInteractions, initCatalogue } from './prod
 import { initContactForm } from './contact.js';
 import { PRODUCTS } from './data.js';
 import { applyTheme } from './theme.js';
+import { initRepairs } from './repairs.js';
 
 fetch('/api/theme', { cache:'no-store' }).then(r => r.ok ? r.json() : null).then(theme => { if (theme) applyTheme(theme); }).catch(() => {});
 
@@ -46,6 +47,7 @@ async function loadContent() {
 }
 initProductInteractions();
 loadContent();
+initRepairs();
 initContactForm();
 initFaq();
 initCopyButtons();

@@ -1,11 +1,11 @@
 import '@fontsource-variable/inter';
 import '@fontsource-variable/space-grotesk';
 import './admin.css';
-import { DEFAULT_THEME, PALETTES, validTheme } from './theme.js';
+import { DEFAULT_THEME, PALETTES, completeTheme, validTheme } from './theme.js';
 
 const $ = (selector) => document.querySelector(selector);
 const escape = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let products = [], siteImages = {}, currentTheme = {...DEFAULT_THEME}, editingId = null, previewUrl = null;
+let products = [], services = [], siteImages = {}, editingServiceId = null, currentTheme = {...DEFAULT_THEME}, editingId = null, previewUrl = null;
 const defaults = {hero:'/images/hero.jpg',showroom:'/images/showroom.jpg',repair:'/images/repair.jpg'};
 const labels = {hero:'Image principale', showroom:'Notre magasin', repair:'Atelier & réparation'};
 const categories = {portable:'PC portable',bureau:'PC de bureau',gaming:'Gaming',simracing:'Sim Racing'};
@@ -17,7 +17,7 @@ async function api(path, options = {}) {
   return data;
 }
 const send = (method, data) => ({method, headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-function notice(message, error=false) {const el=error && $('#editor').open ? $('#editorNotice') : $('#notice'); el.textContent=message; el.className='notice'+(error?' error':''); el.hidden=false; window.scrollTo({top:0,behavior:'smooth'});}
+function notice(message, error=false) {const el=error && $('#serviceEditor').open ? $('#serviceNotice') : error && $('#editor').open ? $('#editorNotice') : $('#notice'); el.textContent=message; el.className='notice'+(error?' error':''); el.hidden=false; window.scrollTo({top:0,behavior:'smooth'});}
 function loggedIn(on) {$('#loginView').hidden=on; $('#dashboard').hidden=!on; $('#logout').hidden=!on;}
 function renderProducts() {
   const search=$('#adminSearch').value.toLowerCase().trim();
@@ -30,7 +30,7 @@ function renderProducts() {
 function renderSiteImages() {
   $('#sitePhotos').innerHTML=Object.entries(defaults).map(([key,url])=>`<article class="site-photo"><img src="${escape(siteImages[key] || url)}" alt="${escape(labels[key])}"><div><strong>${escape(labels[key])}</strong><p class="hint">Image de la page d’accueil</p><label class="secondary file-button">Changer la photo<input type="file" data-site-upload="${key}" accept="image/jpeg,image/png,image/webp"></label>${siteImages[key] ? `<button class="danger" data-reset-image="${key}">Rétablir l’originale</button>` : ''}</div></article>`).join('');
 }
-async function refresh() { [products,siteImages,currentTheme]=await Promise.all([api('/api/products'),api('/api/site-images'),api('/api/theme')]);renderProducts();renderSiteImages();setThemeForm(currentTheme); }
+async function refresh() { [products,services,siteImages,currentTheme]=await Promise.all([api('/api/products'),api('/api/admin/services'),api('/api/site-images'),api('/api/theme')]);renderProducts();renderServices();renderSiteImages();setThemeForm(currentTheme); }
 async function upload(file) {
   if (!file || file.size > 1000000 || !['image/jpeg','image/png','image/webp'].includes(file.type)) throw new Error('Choisissez une image JPG, PNG ou WebP de 1 Mo maximum.');
   const form=new FormData();form.append('image',file);
@@ -56,16 +56,39 @@ for (const id of ['closeEditor','cancelEditor']) $('#'+id).addEventListener('cli
 $('#adminSearch').addEventListener('input',renderProducts);
 $('#productList').addEventListener('click',async e=>{const edit=e.target.closest('[data-edit]'),del=e.target.closest('[data-delete]');if(edit){openEditor(products.find(p=>p.id===edit.dataset.edit));return;}if(del){const p=products.find(p=>p.id===del.dataset.delete);if(!p || !confirm(`Supprimer « ${p.name} » du catalogue ?`))return;del.disabled=true;try{await api(`/api/products/${encodeURIComponent(p.id)}`,{method:'DELETE'});await refresh();notice('Produit supprimé du catalogue.');}catch(err){notice(err.message,true);del.disabled=false;}}});
 $('#productForm').addEventListener('submit',async e=>{e.preventDefault();const form=e.currentTarget,btn=e.submitter;$('#editorNotice').hidden=true;const specs=form.elements.specs.value.split('\n').map(s=>s.trim()).filter(Boolean).map(line=>{const i=line.indexOf(':');return i<0 ? null : [line.slice(0,i).trim(),line.slice(i+1).trim()]});if(specs.some(x=>!x || !x[0] || !x[1])){notice('Chaque détail doit être écrit sous la forme « Nom : valeur ».',true);return;}btn.disabled=true;btn.textContent='Enregistrement…';try{let image=form.dataset.image;const file=$('#productImage').files[0];if(file)image=await upload(file);const product={brand:form.elements.brand.value,name:form.elements.name.value,category:form.elements.category.value,price:form.elements.price.value===''?null:Number(form.elements.price.value),desc:form.elements.desc.value,chips:form.elements.chips.value.split(',').map(x=>x.trim()).filter(Boolean),specs,featured:form.elements.featured.checked,badge:form.elements.badge.value,image};await api(editingId?`/api/products/${encodeURIComponent(editingId)}`:'/api/products',send(editingId?'PUT':'POST',product));$('#editor').close();await refresh();notice('Produit enregistré et visible sur le site.');}catch(err){notice(err.message,true)}finally{btn.disabled=false;btn.textContent='Enregistrer le produit';}});
-for(const tab of ['products','photos','theme','security']) $('#'+tab+'Tab').addEventListener('click',()=>{for(const name of ['products','photos','theme','security']){$('#'+name+'Tab').setAttribute('aria-selected',String(name===tab));$('#'+name+'Panel').hidden=name!==tab;}});
+for(const tab of ['products','services','photos','theme','security']) $('#'+tab+'Tab').addEventListener('click',()=>{for(const name of ['products','services','photos','theme','security']){$('#'+name+'Tab').setAttribute('aria-selected',String(name===tab));$('#'+name+'Panel').hidden=name!==tab;}});
 $('#sitePhotos').addEventListener('change',async e=>{const input=e.target.closest('[data-site-upload]');if(!input?.files[0])return;input.disabled=true;try{const image=await upload(input.files[0]);await api('/api/site-images/'+input.dataset.siteUpload,send('PUT',{image}));await refresh();notice('Photo du site mise à jour.');}catch(err){notice(err.message,true);input.disabled=false;input.value='';}});
 $('#sitePhotos').addEventListener('click',async e=>{const btn=e.target.closest('[data-reset-image]');if(!btn || !confirm('Rétablir la photo originale ?'))return;btn.disabled=true;try{await api('/api/site-images/'+btn.dataset.resetImage,{method:'DELETE'});await refresh();notice('Photo originale rétablie.');}catch(err){notice(err.message,true);btn.disabled=false;}});
+function renderServices() {
+  $('#noServices').hidden=services.length!==0;
+  $('#serviceList').innerHTML=services.map(s=>`<article class="product-row service-row"><span class="service-row-icon" aria-hidden="true">⚙</span><div class="product-info"><strong>${escape(s.name)}</strong><span>${escape(s.price)}${s.delay ? ' · '+escape(s.delay) : ''}</span><span class="service-state ${s.visible?'':'is-hidden'}">${s.visible?'● Visible sur le site':'○ Masqué sur le site'}</span></div><div class="row-actions"><button class="secondary" type="button" data-edit-service="${escape(s.id)}">Modifier</button><button class="danger" type="button" data-delete-service="${escape(s.id)}" aria-label="Supprimer ${escape(s.name)}">Supprimer</button></div></article>`).join('');
+}
+function openServiceEditor(service) {
+  const form=$('#serviceForm');form.reset();$('#serviceNotice').hidden=true;editingServiceId=service?.id || null;
+  $('#serviceEditorTitle').textContent=service?'Modifier le service':'Ajouter un service';
+  for(const key of ['name','description','price','delay','icon']) form.elements[key].value=service?.[key] ?? (key==='icon'?'wrench':key==='price'?'Sur demande':'');
+  form.elements.visible.checked=service?.visible ?? true;
+  $('#serviceEditor').showModal();
+}
+$('#newService').addEventListener('click',()=>openServiceEditor());
+for(const id of ['closeServiceEditor','cancelServiceEditor']) $('#'+id).addEventListener('click',()=>$('#serviceEditor').close());
+$('#serviceList').addEventListener('click',async e=>{
+  const edit=e.target.closest('[data-edit-service]'),del=e.target.closest('[data-delete-service]');
+  if(edit){const service=services.find(s=>s.id===edit.dataset.editService);if(service)openServiceEditor(service);return;}
+  if(del){const service=services.find(s=>s.id===del.dataset.deleteService);if(!service || !confirm(`Supprimer « ${service.name} » ?`))return;del.disabled=true;try{await api(`/api/services/${encodeURIComponent(service.id)}`,{method:'DELETE'});services=await api('/api/admin/services');renderServices();notice('Service supprimé.');}catch(err){notice(err.message,true);del.disabled=false;}}
+});
+$('#serviceForm').addEventListener('submit',async e=>{
+  e.preventDefault();const form=e.currentTarget,btn=e.submitter;$('#serviceNotice').hidden=true;
+  const service={name:form.elements.name.value,description:form.elements.description.value,price:form.elements.price.value,delay:form.elements.delay.value,icon:form.elements.icon.value,visible:form.elements.visible.checked};
+  btn.disabled=true;try{await api(editingServiceId?`/api/services/${encodeURIComponent(editingServiceId)}`:'/api/services',send(editingServiceId?'PUT':'POST',service));$('#serviceEditor').close();services=await api('/api/admin/services');renderServices();notice('Service enregistré.');}catch(err){notice(err.message,true)}finally{btn.disabled=false;}
+});
 function themeFromForm() {
   const f=$('#themeForm');
-  return {palette:f.elements.palette.value,accent:f.elements.accent.value,radius:f.elements.radius.value,font:f.elements.font.value,density:f.elements.density.value};
+  return {palette:f.elements.palette.value,accent:f.elements.accent.value,radius:f.elements.radius.value,font:f.elements.font.value,density:f.elements.density.value,cards:f.elements.cards.value,buttons:f.elements.buttons.value,width:f.elements.width.value,effects:f.elements.effects.value};
 }
 function setThemeForm(theme) {
-  const f=$('#themeForm'), t=validTheme(theme)?theme:DEFAULT_THEME;
-  for(const key of ['palette','accent','radius','font','density']) f.elements[key].value=t[key];
+  const f=$('#themeForm'), t=validTheme(theme)?completeTheme(theme):DEFAULT_THEME;
+  for(const key of ['palette','accent','radius','font','density','cards','buttons','width','effects']) f.elements[key].value=t[key];
   previewTheme();
 }
 function previewTheme() {
@@ -75,6 +98,7 @@ function previewTheme() {
   preview.style.setProperty('--preview-accent',t.accent);
   preview.style.setProperty('--preview-radius',({rounded:'14px',soft:'8px',square:'3px'})[t.radius]);
   preview.style.setProperty('--preview-font',t.font==='classic' ? "'Inter Variable'" : "'Space Grotesk Variable'");
+  preview.dataset.cards=t.cards; preview.dataset.buttons=t.buttons; preview.dataset.width=t.width; preview.dataset.density=t.density; preview.dataset.effects=t.effects;
   $('#accentValue').textContent=t.accent.toUpperCase();
 }
 $('#themeForm').addEventListener('input',previewTheme);
