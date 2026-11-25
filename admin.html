@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#05080e">
+  <title>Administration — Play Tech Manouba</title><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body class="admin-page">
+  <header class="admin-header"><a href="/index.html" class="admin-brand"><span>▶</span> PLAY<span>TECH</span> <small>MANOUBA</small></a><div><a href="/index.html">Voir le site ↗</a> <button id="logout" class="admin-link" hidden>Déconnexion</button></div></header>
+  <main class="admin-container">
+    <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+    <section id="loginView" class="login-card">
+      <div class="eyebrow">ESPACE PRIVÉ</div><h1>Bienvenue 👋</h1>
+      <p>Connectez-vous pour gérer les produits et les photos de votre boutique.</p>
+      <form id="loginForm"><label for="password">Mot de passe administrateur</label><input id="password" type="password" autocomplete="current-password" required placeholder="Votre mot de passe"><button class="primary" type="submit">Se connecter →</button></form>
+      <p class="hint">Accès réservé à l’équipe Play Tech.</p>
+    </section>
+    <section id="dashboard" hidden>
+      <div class="dash-heading"><div><div class="eyebrow">ESPACE DE GESTION</div><h1>Votre boutique, <span>en un clic.</span></h1><p>Modifiez votre catalogue et les photos du site en toute simplicité.</p></div><button id="newProduct" class="primary">＋ Ajouter un produit</button></div>
+      <div class="summary"><div><span>CATALOGUE</span><strong id="productCount">0</strong><small>produits en ligne</small></div><div><span>VISIBILITÉ</span><strong id="featuredCount">0</strong><small>produits à la une</small></div><div><span>VOTRE SITE</span><strong>En ligne</strong><small>modifications partagées</small></div></div>
+      <div class="tabs" role="tablist" aria-label="Gestion"><button id="productsTab" role="tab" aria-selected="true" aria-controls="productsPanel">Produits</button><button id="photosTab" role="tab" aria-selected="false" aria-controls="photosPanel">Photos du site</button></div>
+      <div id="productsPanel" role="tabpanel" aria-labelledby="productsTab"><div class="panel-head"><div><h2>Vos produits</h2><p>Ajoutez, modifiez ou supprimez les articles de votre catalogue.</p></div><input id="adminSearch" type="search" placeholder="Rechercher un produit…" aria-label="Rechercher un produit"></div><div id="productList" class="product-list"></div><p id="noProducts" class="hint" hidden>Aucun produit trouvé.</p></div>
+      <div id="photosPanel" role="tabpanel" aria-labelledby="photosTab" hidden><div class="panel-head"><div><h2>Photos de l’accueil</h2><p>Remplacez les visuels principaux. JPG, PNG ou WebP, 1 Mo maximum.</p></div></div><div id="sitePhotos" class="site-photos"></div></div>
+    </section>
+  </main>
+  <dialog id="editor" class="editor"><form id="productForm"><div class="editor-head"><div><div class="eyebrow">CATALOGUE</div><h2 id="editorTitle">Ajouter un produit</h2></div><button type="button" id="closeEditor" class="icon-button" aria-label="Fermer">×</button></div><div class="editor-body">
+    <div id="editorNotice" class="notice error" role="alert" hidden></div>
+    <div class="form-grid"><label>Marque *<input name="brand" required maxlength="60" placeholder="Ex. Dell"></label><label>Nom du produit *<input name="name" required maxlength="100" placeholder="Ex. Latitude 7430"></label><label>Catégorie *<select name="category"><option value="portable">PC portable</option><option value="bureau">PC de bureau</option><option value="gaming">Gaming</option><option value="simracing">Sim Racing</option></select></label><label>Prix en DT <small>(vide = sur devis)</small><input name="price" type="number" min="0" max="10000000" step="0.01" placeholder="Ex. 1480"></label><label class="full">Description<textarea name="desc" rows="3" maxlength="600" placeholder="Décrivez le produit"></textarea></label><label class="full">Caractéristiques courtes <small>(séparées par des virgules)</small><input name="chips" placeholder="i5, 16 Go, 512 Go SSD"></label><label class="full">Fiche technique <small>(une ligne par détail, séparé par : )</small><textarea name="specs" rows="4" placeholder="Processeur : Intel Core i5&#10;Mémoire : 16 Go"></textarea></label><label>Badge<select name="badge"><option value="">Aucun</option><option value="new">Nouveau</option><option value="promo">Bonne affaire</option><option value="gaming">Gaming</option><option value="reco">Reconditionné</option><option value="devis">Sur devis</option></select></label><label class="check"><input type="checkbox" name="featured"> Afficher sur l’accueil</label><div class="full"><label for="productImage">Photo du produit <small>(JPG, PNG ou WebP · 1 Mo max.)</small></label><div class="image-picker"><img id="imagePreview" alt="Aperçu de la photo"><div><input id="productImage" type="file" accept="image/jpeg,image/png,image/webp"><p class="hint">Une nouvelle photo remplace l’ancienne à l’enregistrement.</p><button type="button" class="danger" id="removeProductImage">Retirer la photo</button></div></div></div></div>
+    </div><div class="editor-foot"><button type="button" class="secondary" id="cancelEditor">Annuler</button><button type="submit" class="primary">Enregistrer le produit</button></div></form></dialog>
+  <script type="module" src="/src/admin.js"></script>
+</body></html>

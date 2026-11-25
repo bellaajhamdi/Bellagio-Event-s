@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catalogue ordinateurs — Play Tech Manouba</title>
+    <meta
+      name="description"
+      content="PC portables, PC de bureau, gaming et sim racing à Manouba. Découvrez notre sélection et contactez-nous pour les disponibilités. ☎ 54 097 202."
+    />
+    <meta name="theme-color" content="#05080e" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Play Tech Manouba" />
+    <meta property="og:title" content="Catalogue ordinateurs — Play Tech Manouba" />
+    <meta
+      property="og:description"
+      content="Découvrez notre sélection de machines à Manouba."
+    />
+    <meta property="og:image" content="/images/gaming.jpg" />
+
+    <noscript>
+      <style>
+        [data-reveal] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body data-page="produits">
+    <div id="site-header"></div>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <a href="/index.html">Accueil</a>
+            <span class="sep" aria-hidden="true">/</span>
+            <span>Produits</span>
+          </nav>
+
+          <h1>Notre <span class="grad-text">catalogue</span></h1>
+          <p class="lead">
+            Découvrez notre sélection de PC portables, de bureau, gaming et Sim Racing. Photos illustratives ; prix, caractéristiques et disponibilités à confirmer auprès de la boutique.
+          </p>
+
+          <div class="page-hero-meta">
+            <span>
+              <svg class="ico" aria-hidden="true"><use href="#i-shield"></use></svg>
+              Prix à confirmer
+            </span>
+            <span>
+              <svg class="ico" aria-hidden="true"><use href="#i-truck"></use></svg>
+              À Manouba
+            </span>
+            <span>
+              <svg class="ico ico--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+              Commande sur WhatsApp
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight">
+        <div class="container">
+          <div class="catalogue-toolbar">
+            <label class="search-box">
+              <svg class="ico" aria-hidden="true"><use href="#i-search"></use></svg>
+              <input
+                id="productSearch"
+                type="search"
+                placeholder="Rechercher une marque, un modèle…"
+                aria-label="Rechercher un produit"
+                autocomplete="off"
+              />
+            </label>
+
+            <div class="filters" id="categoryFilters" role="group" aria-label="Filtrer par catégorie">
+              <button class="chip is-active" type="button" data-filter="all" aria-pressed="true">Tous</button>
+              <button class="chip" type="button" data-filter="portable" aria-pressed="false">PC portables</button>
+              <button class="chip" type="button" data-filter="bureau" aria-pressed="false">PC de bureau</button>
+              <button class="chip" type="button" data-filter="gaming" aria-pressed="false">Gaming</button>
+              <button class="chip" type="button" data-filter="simracing" aria-pressed="false">Sim Racing</button>
+            </div>
+
+            <div class="select-wrap">
+              <select id="sortSelect" aria-label="Trier les produits">
+                <option value="featured">Tri : Sélection</option>
+                <option value="price-asc">Prix croissant</option>
+                <option value="price-desc">Prix décroissant</option>
+              </select>
+              <svg class="ico" aria-hidden="true"><use href="#i-chevron-down"></use></svg>
+            </div>
+          </div>
+
+          <p class="catalogue-count" id="catalogueCount" aria-live="polite"></p>
+
+          <div class="product-grid" id="productGrid"></div>
+
+          <div class="empty-state" id="emptyState" hidden>
+            <svg class="ico" aria-hidden="true"><use href="#i-search"></use></svg>
+            <h3>Aucun produit ne correspond</h3>
+            <p>Essayez un autre mot-clé ou réinitialisez les filtres.</p>
+            <button class="btn btn-ghost btn-sm" type="button" id="resetFilters">
+              Réinitialiser les filtres
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--tight" style="padding-top: 0">
+        <div class="container">
+          <div class="besoin-panel" data-reveal>
+            <div>
+              <span class="eyebrow">Sur mesure</span>
+              <h2>Vous ne trouvez pas votre bonheur ?</h2>
+              <p>
+                Donnez-nous votre budget et vos besoins : nous vous proposons une configuration
+                adaptée à vos besoins.
+              </p>
+            </div>
+            <a class="btn btn-primary" href="https://wa.me/21654097202?text=Bonjour%20Play%20Tech%20%F0%9F%91%8B%0A%0AJe%20souhaite%20un%20devis%20pour%20une%20configuration%20sur%20mesure." target="_blank" rel="noopener">
+              <svg class="ico ico--fill" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+              Demander une configuration
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
