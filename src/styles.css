@@ -3188,3 +3188,77 @@ html[data-theme-effects="minimal"] .service-card::before { display:none; }
 .repair-request:hover { text-decoration:underline; }
 .repair-notice,.repair-empty { color:var(--muted); font-size:.9rem; margin-bottom:1.5rem; }
 .repair-empty { grid-column:1/-1; }
+
+/* Light theme: surfaces and ink are adjusted together, while the photo hero
+   and map retain a dark treatment for image contrast. */
+html[data-theme-palette="light"] {
+  --text:#172737;
+  --text-soft:#304759;
+  --muted:#506679;
+  --muted-2:#5d7181;
+  --line:rgba(24,54,73,.13);
+  --line-strong:rgba(24,54,73,.23);
+  --shadow:0 24px 60px -36px rgba(20,48,67,.38);
+}
+html[data-theme-palette="light"] body::after {opacity:.012}
+html[data-theme-palette="light"] .site-header,
+html[data-theme-palette="light"] #site-header.is-scrolled .site-header {background:rgba(255,255,255,.92);border-bottom-color:var(--line)}
+html[data-theme-palette="light"] .brand-word span {background:none;color:color-mix(in srgb,var(--cyan) 30%,#123b50)}
+html[data-theme-palette="light"] .main-nav a:hover {background:rgba(12,55,78,.06)}
+html[data-theme-palette="light"] .main-nav a.is-active {color:color-mix(in srgb,var(--cyan) 30%,#123b50);background:color-mix(in srgb,var(--cyan) 14%,transparent)}
+html[data-theme-palette="light"] .nav-toggle {background:#fff}
+html[data-theme-palette="light"] .hero {--text:#f1f7fc;--text-soft:#d8e4f0;--muted:#c8d4df;--muted-2:#adbdca;--cyan-soft:color-mix(in srgb,var(--cyan),white 35%);--grad:linear-gradient(100deg,color-mix(in srgb,var(--cyan),white 45%),var(--cyan) 55%,color-mix(in srgb,var(--cyan),#3b82f6 40%))}
+html[data-theme-palette="light"] .hero .btn-ghost {color:#f1f7fc;border-color:rgba(255,255,255,.45);background:rgba(3,12,20,.35)}
+html[data-theme-palette="light"] .hero .btn-ghost:hover {background:rgba(3,12,20,.65)}
+html[data-theme-palette="light"] .trustbar {background:rgba(255,255,255,.95)}
+html[data-theme-palette="light"] .brands-row span {color:#647a8c}
+html[data-theme-palette="light"] .brands-row span:hover {color:#203c50}
+html[data-theme-palette="light"] .service-card,
+html[data-theme-palette="light"] .contact-card,
+html[data-theme-palette="light"] .process-item,
+html[data-theme-palette="light"] .faq-item {background:var(--surface)}
+html[data-theme-palette="light"] .service-card:hover {background:var(--surface-3)}
+html[data-theme-palette="light"] .spec-chips li {background:#eef4f8;border-color:#d7e2e9;color:#3b5363}
+html[data-theme-palette="light"] .product-price .amount,
+html[data-theme-palette="light"] .modal-price .amount {color:var(--text)}
+html[data-theme-palette="light"] .product-price .cur,
+html[data-theme-palette="light"] .modal-price .cur,
+html[data-theme-palette="light"] .amount--devis,
+html[data-theme-palette="light"] .repa-price strong,
+html[data-theme-palette="light"] .price-table td:last-child {color:var(--cyan-soft)}
+html[data-theme-palette="light"] .about-badge {background:rgba(255,255,255,.96);box-shadow:var(--shadow)}
+html[data-theme-palette="light"] .repair-media::after {background:linear-gradient(90deg,transparent 55%,rgba(255,255,255,.85) 100%)}
+html[data-theme-palette="light"] .steps li {border-color:var(--line)}
+html[data-theme-palette="light"] .repair-note {color:var(--cyan-soft)}
+html[data-theme-palette="light"] .catalogue-toolbar {background:rgba(244,247,250,.94)}
+html[data-theme-palette="light"] .search-box input,
+html[data-theme-palette="light"] .select-wrap select,
+html[data-theme-palette="light"] .input {background-color:#fff}
+html[data-theme-palette="light"] .chip:not(.is-active) {background:#fff}
+html[data-theme-palette="light"] .chip:hover,
+html[data-theme-palette="light"] .btn-ghost:hover {color:var(--cyan-soft)}
+html[data-theme-palette="light"] .form-panel,
+html[data-theme-palette="light"] .besoin-panel {background:var(--surface)}
+html[data-theme-palette="light"] .map-panel {color:#f1f7fc}
+html[data-theme-palette="light"] .map-pin span {color:#c0cdd8}
+html[data-theme-palette="light"] .map-panel .btn-ghost {color:#f1f7fc;border-color:rgba(255,255,255,.45)}
+html[data-theme-palette="light"] .modal-close {color:#f1f7fc}
+html[data-theme-palette="light"] .modal-close:hover {color:var(--cyan-soft);background:#fff}
+html[data-theme-palette="light"] .toast {background:#fff}
+html[data-theme-palette="light"] .to-top {background:rgba(255,255,255,.95)}
+html[data-theme-palette="light"] :is(.trust-item .ico,.page-hero-meta .ico,.contact-card > .ico,.footer-contact .ico,.map-info .ico,.form-note .ico) {color:var(--cyan-soft)}
+html[data-theme-palette="light"] .brand-mark {background:var(--grad-btn)}
+html[data-theme-palette="light"] .grad-text:not(.hero .grad-text) {background:linear-gradient(100deg,color-mix(in srgb,var(--cyan) 32%,#17374c),color-mix(in srgb,var(--cyan) 48%,#143855));background-clip:text;-webkit-background-clip:text}
+html[data-theme-palette="light"] :is(.eyebrow,.service-icon,.service-link,.repair-request,.link-arrow,.catalogue-count strong) {color:color-mix(in srgb,var(--cyan) 30%,#17374c)}
+html[data-theme-palette="light"][data-theme-buttons="outline"] .btn-primary {color:color-mix(in srgb,var(--cyan) 30%,#17374c);border-color:color-mix(in srgb,var(--cyan) 40%,#17374c)}
+html[data-theme-palette="light"][data-theme-buttons="outline"] .hero .btn-primary {color:var(--cyan);border-color:var(--cyan)}
+html[data-theme-palette="light"][data-theme-buttons="outline"] .cta-panel .btn-primary {color:#04121a;border-color:#04121a}
+@media(max-width:980px){
+  html[data-theme-palette="light"] .main-nav {background:rgba(255,255,255,.98)}
+  html[data-theme-palette="light"] .repair-media::after {background:linear-gradient(180deg,transparent 55%,rgba(255,255,255,.9) 100%)}
+}
+html[data-theme-palette="light"] :focus-visible {outline-color:var(--cyan-soft)}
+html[data-theme-palette="light"] .hero :focus-visible {outline-color:var(--cyan)}
+html[data-theme-palette="light"] .header-phone:hover {color:var(--text);background:rgba(12,55,78,.06)}
+html[data-theme-palette="light"] .badge--devis {color:#cbdbe8}
+html[data-theme-palette="light"][data-theme-buttons="solid"] .cta-panel .btn-primary {color:#04121a}

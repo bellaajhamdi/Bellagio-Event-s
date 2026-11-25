@@ -40,7 +40,7 @@ Pour mettre à jour le code ensuite, relancez `npm run hosting:setup` ou exécut
 
 ## Personnalisation et mot de passe administrateur
 
-Dans l'administration, l'onglet **Réparations** permet d’ajouter, modifier, masquer et supprimer les prestations affichées sur la page Réparation, avec leurs tarifs et délais indicatifs. L’onglet **Personnalisation** permet de choisir l’ambiance, la couleur principale, les formes, les titres, l’espacement, les cartes, les boutons, la largeur et les effets lumineux, puis de publier ou de rétablir le style d’origine. Ces réglages sont enregistrés dans D1 et s'appliquent à tous les visiteurs.
+Dans l'administration, l'onglet **Réparations** permet d’ajouter, modifier, masquer et supprimer les prestations affichées sur la page Réparation, avec leurs tarifs et délais indicatifs. L’onglet **Personnalisation** permet de choisir l’ambiance sombre ou claire, la couleur principale, les formes, les titres, l’espacement, les cartes, les boutons, la largeur et les effets lumineux, puis de publier ou de rétablir le style d’origine. Ces réglages sont enregistrés dans D1 et s'appliquent à tous les visiteurs.
 
 L'onglet **Sécurité** permet de changer le mot de passe en fournissant l'ancien. Le nouveau mot de passe (16 caractères minimum) est enregistré sous forme de condensat PBKDF2 avec sel ; les sessions existantes sont invalidées. Le secret Cloudflare `ADMIN_PASSWORD` reste nécessaire comme clé de signature et mot de passe initial avant tout changement : ne le supprimez pas. Après un changement via l'administration, modifier ce secret seul ne modifie pas le mot de passe enregistré dans D1.
 

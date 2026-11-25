@@ -38,7 +38,7 @@ test('theme permissions and password rotation invalidate old sessions',async () 
     let r=await worker.fetch(request('/api/theme','PUT',{palette:'noir'}),env); assert.equal(r.status,401);
     r=await worker.fetch(request('/api/login','POST',{password:env.ADMIN_PASSWORD}),env);assert.equal(r.status,200);
     const cookie=r.headers.get('set-cookie').split(';')[0];
-    const theme={palette:'graphite',accent:'#fbbf24',radius:'square',font:'classic',density:'compact'};
+    const theme={palette:'light',accent:'#fbbf24',radius:'square',font:'classic',density:'compact'};
     r=await worker.fetch(request('/api/theme','PUT',theme,cookie),env);assert.equal(r.status,200);
     r=await worker.fetch(request('/api/theme'),env);assert.deepEqual(await json(r),completeTheme(theme));
     r=await worker.fetch(request('/api/password','POST',{currentPassword:'wrong',newPassword:'new-password-long-enough'},cookie),env);assert.equal(r.status,401);

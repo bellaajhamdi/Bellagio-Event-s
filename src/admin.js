@@ -98,7 +98,7 @@ function previewTheme() {
   preview.style.setProperty('--preview-accent',t.accent);
   preview.style.setProperty('--preview-radius',({rounded:'14px',soft:'8px',square:'3px'})[t.radius]);
   preview.style.setProperty('--preview-font',t.font==='classic' ? "'Inter Variable'" : "'Space Grotesk Variable'");
-  preview.dataset.cards=t.cards; preview.dataset.buttons=t.buttons; preview.dataset.width=t.width; preview.dataset.density=t.density; preview.dataset.effects=t.effects;
+  preview.dataset.palette=t.palette; preview.dataset.cards=t.cards; preview.dataset.buttons=t.buttons; preview.dataset.width=t.width; preview.dataset.density=t.density; preview.dataset.effects=t.effects;
   $('#accentValue').textContent=t.accent.toUpperCase();
 }
 $('#themeForm').addEventListener('input',previewTheme);
