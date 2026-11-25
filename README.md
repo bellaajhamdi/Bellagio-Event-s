@@ -22,7 +22,7 @@ Le site est accessible sur le port 8787, et l'administration à `/admin`. Les mo
 
 ## Déploiement depuis GitHub, sans terminal local
 
-Le compte Cloudflare doit avoir accès à ce dépôt GitHub. Dans **Workers & Pages**, créez un Worker connecté à GitHub et sélectionnez ce dépôt ainsi que la branche de travail. Réglez la commande de compilation sur `npm run build` et la commande de déploiement sur `npm run deploy:cloudflare`. Wrangler provisionne la base D1 indiquée dans la configuration et applique les migrations après le déploiement ; le compte et le jeton de build gérés par Cloudflare doivent disposer des autorisations Workers et D1. Les étapes de provisionnement à distance doivent être vérifiées sur le compte Cloudflare, car elles ne sont pas testables sans connexion au compte.
+Le compte Cloudflare doit avoir accès à ce dépôt GitHub. Dans **Workers & Pages**, créez un Worker connecté à GitHub et sélectionnez ce dépôt ainsi que la branche de travail. Réglez la commande de compilation sur `npm run build` et la commande de déploiement sur `npm run deploy:cloudflare`. Le script crée la base D1 si nécessaire, applique les migrations, puis déploie le Worker ; le compte et le jeton de build gérés par Cloudflare doivent disposer des autorisations Workers et D1. Les étapes de provisionnement à distance doivent être vérifiées sur le compte Cloudflare, car elles ne sont pas testables sans connexion au compte.
 
 Après la première publication, ouvrez les paramètres du Worker dans Cloudflare et ajoutez une variable **secrète** nommée `ADMIN_PASSWORD` contenant un mot de passe unique d'au moins 16 caractères. Enregistrez et redéployez si le tableau de bord le demande. Ne partagez jamais ce mot de passe. L'adresse du Worker s'affiche dans Cloudflare ; son administration se trouve à `/admin`. Un Worker portant déjà le même nom peut être remplacé : vérifiez avant la première publication.
 
@@ -37,6 +37,14 @@ Un compte Cloudflare personnel est nécessaire. Les offres gratuites de Workers 
 5. Ajoutez `/admin` à l’adresse publiée pour gérer le catalogue et les photos. Les modifications sont immédiatement visibles sur le site. Protégez l'accès au compte Cloudflare avec une authentification forte et sauvegardez régulièrement la base D1.
 
 Pour mettre à jour le code ensuite, relancez `npm run hosting:setup` ou exécutez `npm run build && npx wrangler deploy --config wrangler.deploy.json`. Les données D1 existantes ne sont pas écrasées lors d'un redéploiement. Les migrations ne sont appliquées qu'une fois ; ne recréez pas la base pour une mise à jour ordinaire. La base de l'aperçu local n'est pas transférée automatiquement : la base en ligne commence avec le catalogue initial, qu'il faudra ensuite mettre à jour depuis l'administration.
+
+## Personnalisation et mot de passe administrateur
+
+Dans l'administration, l'onglet **Personnalisation** permet de choisir l'ambiance, la couleur principale, les formes, les titres et l'espacement, puis de publier ou de rétablir le style d'origine. Ces réglages sont enregistrés dans D1 et s'appliquent à tous les visiteurs.
+
+L'onglet **Sécurité** permet de changer le mot de passe en fournissant l'ancien. Le nouveau mot de passe (16 caractères minimum) est enregistré sous forme de condensat PBKDF2 avec sel ; les sessions existantes sont invalidées. Le secret Cloudflare `ADMIN_PASSWORD` reste nécessaire comme clé de signature et mot de passe initial avant tout changement : ne le supprimez pas. Après un changement via l'administration, modifier ce secret seul ne modifie pas le mot de passe enregistré dans D1.
+
+Si le mot de passe a été oublié, un administrateur du compte Cloudflare peut récupérer l'accès depuis le tableau de bord D1 : sauvegarder la base, puis supprimer uniquement la ligne `id = 1` de la table `admin_credentials` (ne pas supprimer les tables ni le catalogue). L'accès reviendra alors au secret Cloudflare `ADMIN_PASSWORD` ; connectez-vous et choisissez immédiatement un nouveau mot de passe dans l'onglet Sécurité. Cette opération invalide les sessions. Toute personne ayant accès à D1 ou aux secrets Cloudflare peut contrôler l'administration : sécurisez le compte Cloudflare et limitez les droits d'accès.
 
 ## Avant publication
 

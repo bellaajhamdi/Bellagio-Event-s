@@ -3167,3 +3167,9 @@ html.modal-open {
     transform: none;
   }
 }
+
+/* The administrator can choose a more compact rhythm and card style. */
+html[data-theme-density="compact"] .section { padding-block: clamp(2.8rem, 4.5vw, 4.5rem); }
+html[data-theme-density="compact"] .section--tight { padding-block: clamp(1.8rem, 3vw, 3rem); }
+html[data-theme-radius="soft"] .btn { border-radius: 10px; }
+html[data-theme-radius="square"] .btn { border-radius: 4px; }

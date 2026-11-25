@@ -1,3 +1,5 @@
+import { DEFAULT_THEME, validTheme } from '../src/theme.js';
+
 const json = (data, status = 200, headers = {}) => new Response(JSON.stringify(data), {status, headers: {'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', ...headers}});
 const bad = (message, status = 400) => json({error: message}, status);
 const bytes = new TextEncoder();
@@ -8,13 +10,35 @@ async function signature(secret, message) {
   return hex(await crypto.subtle.sign('HMAC', key, bytes.encode(message)));
 }
 function equal(a,b) { if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false; let v=0; for(let i=0;i<a.length;i++) v |= a.charCodeAt(i)^b.charCodeAt(i); return v===0; }
+const getCredential = env => env.DB.prepare('SELECT salt, hash, iterations FROM admin_credentials WHERE id=1').first();
+async function passwordHash(password, salt, iterations) {
+  const key=await crypto.subtle.importKey('raw',bytes.encode(password),'PBKDF2',false,['deriveBits']);
+  const saltBytes=new Uint8Array(salt.match(/../g).map(x=>parseInt(x,16)));
+  return hex(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:saltBytes,iterations},key,256));
+}
+async function verifyPassword(password, env, credential) {
+  if (typeof password !== 'string' || password.length > 256) return false;
+  if (credential && (!Number.isInteger(credential.iterations) || credential.iterations < 1 || credential.iterations > 100000 || !/^[a-f0-9]{32}$/.test(credential.salt) || !/^[a-f0-9]{64}$/.test(credential.hash))) return false;
+  return credential ? equal(await passwordHash(password,credential.salt,credential.iterations),credential.hash) : equal(await digest(password),await digest(env.ADMIN_PASSWORD));
+}
+function signingKey(env, credential) { return credential ? `${env.ADMIN_PASSWORD}:${credential.hash}` : env.ADMIN_PASSWORD; }
+async function checkAttempt(req,env) {
+  const ip=req.headers.get('CF-Connecting-IP') || 'local';
+  const attempt=await env.DB.prepare('SELECT failures, until FROM login_attempts WHERE ip=?').bind(ip).first();
+  return {ip,attempt,blocked:!!(attempt && attempt.until > Date.now() && attempt.failures >= 5)};
+}
+async function recordFailure(env,ip,attempt) {
+  const active=attempt && attempt.until > Date.now();
+  await env.DB.prepare('INSERT INTO login_attempts (ip,failures,until) VALUES (?,?,?) ON CONFLICT(ip) DO UPDATE SET failures=excluded.failures, until=excluded.until').bind(ip,active ? attempt.failures+1 : 1,active ? attempt.until : Date.now()+900000).run();
+}
 async function authenticated(req, env) {
   if (!env.ADMIN_PASSWORD || env.ADMIN_PASSWORD.length < 16) return false;
   const token = (req.headers.get('Cookie') || '').match(/(?:^|;\s*)pt_session=([^;]+)/)?.[1];
   if (!token) return false;
   const parts = token.split('.');
   if (parts.length !== 3 || !/^\d+$/.test(parts[0]) || Number(parts[0]) < Date.now() || Number(parts[0]) > Date.now() + 86400000) return false;
-  return equal(parts[2], await signature(env.ADMIN_PASSWORD, `${parts[0]}.${parts[1]}`));
+  const credential=await getCredential(env);
+  return equal(parts[2], await signature(signingKey(env,credential), `${parts[0]}.${parts[1]}`));
 }
 function cookie(req, value, maxAge) {
   return `pt_session=${value}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${new URL(req.url).protocol === 'https:' ? '; Secure' : ''}`;
@@ -40,6 +64,11 @@ async function cleanup(env, image) {
 async function handle(req, env) {
   const url=new URL(req.url), path=url.pathname;
   if (!path.startsWith('/api/')) return env.ASSETS.fetch(req);
+  if (req.method === 'GET' && path === '/api/theme') {
+    const row=await env.DB.prepare("SELECT value FROM site_settings WHERE key='theme'").first();
+    if (!row) return json(DEFAULT_THEME);
+    try {const theme=JSON.parse(row.value);return json(validTheme(theme) ? theme : DEFAULT_THEME);} catch {return json(DEFAULT_THEME);}
+  }
   if (req.method === 'GET' && path === '/api/products') {
     const rows=await env.DB.prepare('SELECT data FROM products ORDER BY position, id').all();
     return json(rows.results.map(row=>JSON.parse(row.data)));
@@ -56,22 +85,46 @@ async function handle(req, env) {
   if (req.method !== 'GET' && !sameOrigin(req)) return bad('Origine non autorisée.',403);
   if (req.method === 'POST' && path === '/api/login') {
     if (!env.ADMIN_PASSWORD || env.ADMIN_PASSWORD.length < 16) return bad('Administration non configurée : définissez un mot de passe de 16 caractères minimum.',503);
-    const ip=req.headers.get('CF-Connecting-IP') || 'local';
-    const attempt=await env.DB.prepare('SELECT failures, until FROM login_attempts WHERE ip=?').bind(ip).first();
-    if (attempt && attempt.until > Date.now() && attempt.failures >= 5) return bad('Trop de tentatives. Réessayez dans 15 minutes.',429);
+    const {ip,attempt,blocked}=await checkAttempt(req,env);
+    if (blocked) return bad('Trop de tentatives. Réessayez dans 15 minutes.',429);
     let body; try { body=await req.json(); } catch { return bad('Requête invalide.'); }
-    if (typeof body.password !== 'string' || body.password.length > 256 || !equal(await digest(body.password), await digest(env.ADMIN_PASSWORD))) {
-      const failures = attempt && attempt.until > Date.now() ? attempt.failures+1 : 1;
-      await env.DB.prepare('INSERT INTO login_attempts (ip,failures,until) VALUES (?,?,?) ON CONFLICT(ip) DO UPDATE SET failures=excluded.failures, until=excluded.until').bind(ip,failures,attempt && attempt.until > Date.now() ? attempt.until : Date.now()+900000).run();
+    const credential=await getCredential(env);
+    if (!await verifyPassword(body.password,env,credential)) {
+      await recordFailure(env,ip,attempt);
       return bad('Mot de passe incorrect.',401);
     }
     await env.DB.prepare('DELETE FROM login_attempts WHERE ip=?').bind(ip).run();
     const payload=`${Date.now()+28800000}.${crypto.randomUUID()}`;
-    return json({ok:true},200,{'Set-Cookie':cookie(req,`${payload}.${await signature(env.ADMIN_PASSWORD,payload)}`,28800)});
+    return json({ok:true},200,{'Set-Cookie':cookie(req,`${payload}.${await signature(signingKey(env,credential),payload)}`,28800)});
   }
   if (req.method === 'GET' && path === '/api/session') return json({authenticated:await authenticated(req,env)});
   if (req.method === 'POST' && path === '/api/logout') return json({ok:true},200,{'Set-Cookie':cookie(req,'',0)});
   if (!(await authenticated(req,env))) return bad('Connectez-vous pour continuer.',401);
+
+  if (req.method === 'PUT' && path === '/api/theme') {
+    let theme; try {theme=await req.json()} catch {return bad('Données invalides.')};
+    if (!validTheme(theme)) return bad('Choisissez une couleur suffisamment claire et des options valides.');
+    const saved={palette:theme.palette,accent:theme.accent.toLowerCase(),radius:theme.radius,font:theme.font,density:theme.density};
+    await env.DB.prepare("INSERT INTO site_settings (key,value) VALUES ('theme',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value").bind(JSON.stringify(saved)).run();
+    return json(saved);
+  }
+  if (req.method === 'POST' && path === '/api/password') {
+    if (!env.ADMIN_PASSWORD || env.ADMIN_PASSWORD.length < 16) return bad('Administration non configurée.',503);
+    const {ip,attempt,blocked}=await checkAttempt(req,env);
+    if (blocked) return bad('Trop de tentatives. Réessayez dans 15 minutes.',429);
+    let body; try {body=await req.json()} catch {return bad('Données invalides.')};
+    const credential=await getCredential(env);
+    if (!await verifyPassword(body.currentPassword,env,credential)) {await recordFailure(env,ip,attempt);return bad('Mot de passe actuel incorrect.',401);}
+    if (typeof body.newPassword !== 'string' || body.newPassword.length < 16 || body.newPassword.length > 256) return bad('Le nouveau mot de passe doit contenir entre 16 et 256 caractères.');
+    if (body.newPassword===body.currentPassword) return bad('Choisissez un mot de passe différent.');
+    // Cloudflare Workers caps PBKDF2 at 100,000 iterations per call.
+    const salt=hex(crypto.getRandomValues(new Uint8Array(16))), iterations=100000;
+    const hash=await passwordHash(body.newPassword,salt,iterations);
+    await env.DB.prepare('INSERT INTO admin_credentials (id,salt,hash,iterations) VALUES (1,?,?,?) ON CONFLICT(id) DO UPDATE SET salt=excluded.salt,hash=excluded.hash,iterations=excluded.iterations').bind(salt,hash,iterations).run();
+    await env.DB.prepare('DELETE FROM login_attempts WHERE ip=?').bind(ip).run();
+    return json({ok:true},200,{'Set-Cookie':cookie(req,'',0)});
+  }
+
   if (req.method === 'POST' && path === '/api/upload') {
     if (Number(req.headers.get('content-length')) > 1200000) return bad('Image trop volumineuse (1 Mo maximum).',413);
     let form; try { form=await req.formData(); } catch { return bad('Fichier invalide.'); }

@@ -14,6 +14,9 @@ import {
 import { initProductGrids, initProductInteractions, initCatalogue } from './products.js';
 import { initContactForm } from './contact.js';
 import { PRODUCTS } from './data.js';
+import { applyTheme } from './theme.js';
+
+fetch('/api/theme', { cache:'no-store' }).then(r => r.ok ? r.json() : null).then(theme => { if (theme) applyTheme(theme); }).catch(() => {});
 
 mountChrome();
 initChrome();

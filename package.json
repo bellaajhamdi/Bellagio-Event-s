@@ -11,7 +11,8 @@
     "dev:worker": "wrangler dev --local --ip 0.0.0.0 --port 8787",
     "db:local": "wrangler d1 migrations apply playtech-db --local",
     "hosting:setup": "node scripts/setup-cloudflare.mjs",
-    "deploy:cloudflare": "wrangler deploy && wrangler d1 migrations apply DB --remote --force"
+    "deploy:cloudflare": "node scripts/deploy-cloudflare.mjs",
+    "test": "node --test tests/*.test.js"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
