@@ -3262,3 +3262,7 @@ html[data-theme-palette="light"] .hero :focus-visible {outline-color:var(--cyan)
 html[data-theme-palette="light"] .header-phone:hover {color:var(--text);background:rgba(12,55,78,.06)}
 html[data-theme-palette="light"] .badge--devis {color:#cbdbe8}
 html[data-theme-palette="light"][data-theme-buttons="solid"] .cta-panel .btn-primary {color:#04121a}
+
+/* Explicit stock state, readable over both image and theme surfaces. */
+.badge--sold-out {background:#511d25;border-color:#bd5965;color:#fff}
+.stock-disabled {background:var(--surface-3);border:1px solid var(--line-strong);color:var(--text-soft);cursor:not-allowed;box-shadow:none}

@@ -46,17 +46,19 @@ function cookie(req, value, maxAge) {
 }
 function sameOrigin(req) { return req.headers.get('Origin') === new URL(req.url).origin; }
 const text = (v,max) => typeof v === 'string' && v.trim().length <= max ? v.trim() : null;
-function validateProduct(input, id) {
+export function validateProduct(input, id, previous = null) {
   if (!input || typeof input !== 'object') return null;
   const name=text(input.name,100), brand=text(input.brand,60), desc=text(input.desc,600);
   const category=input.category;
   const price=input.price === null || input.price === '' ? null : Number(input.price);
   const image=text(input.image,200);
+  const stock=input.stock ?? previous?.stock ?? 'available';
+  if (!['available','sold_out'].includes(stock)) return null;
   if (!name || !brand || desc === null || !['portable','bureau','gaming','simracing'].includes(category) || (price !== null && (!Number.isFinite(price) || price < 0 || price > 10000000)) || !image || !/^\/(?:images\/[\w.-]+|api\/images\/[a-f0-9-]{36})$/.test(image)) return null;
   if (!Array.isArray(input.chips) || input.chips.length > 8 || !Array.isArray(input.specs) || input.specs.length > 12) return null;
   const chips=input.chips.map(c=>text(c,60)); const specs=input.specs.map(pair=>Array.isArray(pair) && pair.length===2 ? pair.map(x=>text(x,100)) : null);
   if(chips.some(c=>!c) || specs.some(pair=>!pair || pair.some(c=>!c))) return null;
-  return {id,brand,name,category,price,image,desc,chips,specs,featured:input.featured===true, ...(input.badge && ['new','promo','gaming','reco','devis'].includes(input.badge) ? {badge: input.badge}: {})};
+  return {id,brand,name,category,price,image,desc,chips,specs,stock,featured:input.featured===true, ...(input.badge && ['new','promo','gaming','reco','devis'].includes(input.badge) ? {badge: input.badge}: {})};
 }
 async function cleanup(env, image) {
   if (!image?.startsWith('/api/images/')) return;
@@ -177,7 +179,7 @@ async function handle(req, env) {
     const previous=JSON.parse(old.data);
     if (req.method === 'DELETE') { await env.DB.prepare('DELETE FROM products WHERE id=?').bind(productMatch[1]).run(); await cleanup(env,previous.image); return json({ok:true}); }
     let body; try {body=await req.json()} catch {return bad('Données invalides.')};
-    const product=validateProduct(body,productMatch[1]); if(!product) return bad('Vérifiez les champs du produit.');
+    const product=validateProduct(body,productMatch[1],previous); if(!product) return bad('Vérifiez les champs du produit.');
     if (product.image.startsWith('/api/images/') && !await env.DB.prepare('SELECT id FROM images WHERE id=?').bind(product.image.slice(12)).first()) return bad('Image introuvable.');
     await env.DB.prepare('UPDATE products SET data=? WHERE id=?').bind(JSON.stringify(product),product.id).run();
     if(previous.image!==product.image) await cleanup(env,previous.image);

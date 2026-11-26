@@ -10,8 +10,9 @@ const priceHtml = (p) =>
     ? '<span class="amount amount--devis">Sur devis</span>'
     : `<span class="amount">${formatPrice(p.price)}</span><span class="cur">DT</span>`;
 
-const badgeHtml = (p) =>
-  p.badge ? `<span class="badge ${BADGES[p.badge].cls}">${BADGES[p.badge].label}</span>` : '';
+const badgeHtml = (p, inline = false) =>
+  p.stock === 'sold_out' ? `<span class="badge badge--sold-out"${inline ? ' style="position:static"' : ''}>Stock épuisé</span>` :
+  p.badge && BADGES[p.badge] ? `<span class="badge ${BADGES[p.badge].cls}"${inline ? ' style="position:static"' : ''}>${BADGES[p.badge].label}</span>` : '';
 
 export function orderUrl(p) {
   const priceLabel = p.price == null ? 'sur devis' : `${formatPrice(p.price)} DT`;
@@ -42,10 +43,7 @@ export function renderProductCard(p, index = 0) {
               Détails
               ${icon('arrow', 'ico--xs')}
             </button>
-            <button class="btn btn-primary btn-sm" type="button" data-order="${escapeHtml(p.id)}"
-                    aria-label="Commander ${escapeHtml(p.name)} sur WhatsApp">
-              ${icon('whatsapp', 'ico--fill')} Commander
-            </button>
+            ${p.stock === 'sold_out' ? '<button class="btn btn-sm stock-disabled" type="button" disabled>Stock épuisé</button>' : `<button class="btn btn-primary btn-sm" type="button" data-order="${escapeHtml(p.id)}" aria-label="Commander ${escapeHtml(p.name)} sur WhatsApp">${icon('whatsapp', 'ico--fill')} Commander</button>`}
           </div>
         </div>
       </div>
@@ -89,9 +87,7 @@ export function openProduct(id) {
   if (!p) return;
 
   const dialog = ensureDialog();
-  const badge = p.badge
-    ? `<span class="badge ${BADGES[p.badge].cls}" style="position:static">${BADGES[p.badge].label}</span>`
-    : '';
+  const badge = badgeHtml(p, true);
 
   dialog.innerHTML = `
     <div class="modal-shell">
@@ -128,9 +124,7 @@ export function openProduct(id) {
         </dl>
 
         <div class="modal-actions">
-          <a class="btn btn-primary" href="${orderUrl(p)}" target="_blank" rel="noopener">
-            ${icon('whatsapp', 'ico--fill')} Commander sur WhatsApp
-          </a>
+          ${p.stock === 'sold_out' ? '<button class="btn stock-disabled" type="button" disabled>Stock épuisé</button>' : `<a class="btn btn-primary" href="${orderUrl(p)}" target="_blank" rel="noopener">${icon('whatsapp', 'ico--fill')} Commander sur WhatsApp</a>`}
           <a class="btn btn-ghost" href="tel:${CONTACT.tel1}">
             ${icon('phone')} Appeler
           </a>
@@ -154,7 +148,7 @@ export function initProductInteractions() {
     if (orderBtn) {
       e.preventDefault();
       const p = PRODUCTS.find((item) => item.id === orderBtn.dataset.order);
-      if (!p) return;
+      if (!p || p.stock === 'sold_out') return;
       window.open(orderUrl(p), '_blank', 'noopener');
       return;
     }

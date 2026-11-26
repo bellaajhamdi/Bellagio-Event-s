@@ -38,6 +38,10 @@ Un compte Cloudflare personnel est nécessaire. Les offres gratuites de Workers 
 
 Pour mettre à jour le code ensuite, relancez `npm run hosting:setup` ou exécutez `npm run build && npx wrangler deploy --config wrangler.deploy.json`. Les données D1 existantes ne sont pas écrasées lors d'un redéploiement. Les migrations ne sont appliquées qu'une fois ; ne recréez pas la base pour une mise à jour ordinaire. La base de l'aperçu local n'est pas transférée automatiquement : la base en ligne commence avec le catalogue initial, qu'il faudra ensuite mettre à jour depuis l'administration.
 
+## Gestion du stock
+
+Dans l’administration, modifiez un produit et choisissez « Stock épuisé » dans Disponibilité. Il reste visible sur le site, mais sa commande est désactivée. Vous pouvez le remettre en disponibilité manuellement. Les anciens produits restent à confirmer auprès de la boutique. Ce réglage n’est pas encore synchronisé avec Instagram.
+
 ## Personnalisation et mot de passe administrateur
 
 Dans l'administration, l'onglet **Réparations** permet d’ajouter, modifier, masquer et supprimer les prestations affichées sur la page Réparation, avec leurs tarifs et délais indicatifs. L’onglet **Personnalisation** permet de choisir l’ambiance sombre ou claire, la couleur principale, les formes, les titres, l’espacement, les cartes, les boutons, la largeur et les effets lumineux, puis de publier ou de rétablir le style d’origine. Ces réglages sont enregistrés dans D1 et s'appliquent à tous les visiteurs.
